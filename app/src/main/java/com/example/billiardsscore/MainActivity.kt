@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         start.setOnClickListener {
             val intent = Intent(this, PlayActivity::class.java)
 
+            // if user's information changes, they move to next activity(= PlayActivity)
             intent.putExtra("pl1", "${pl1.text}")
             intent.putExtra("pl1_goal", "${pl1_goal.text}")
             intent.putExtra("pl2", "${pl2.text}")

@@ -14,6 +14,7 @@ class PlayActivity : AppCompatActivity() {
     var isPl1Order:Boolean = false
     var isPl2Order:Boolean = false
 
+    // timer
     var pl1Time:Int = 0
     var pl2Time:Int = 0
 
@@ -27,6 +28,7 @@ class PlayActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
 
+        // setting display
         pl1_name.text = intent.getStringExtra("pl1")
         pl1_goal.text = intent.getStringExtra("pl1_goal")
         pl2_name.text = intent.getStringExtra("pl2")
@@ -39,6 +41,7 @@ class PlayActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        // if a player display is touched, the player get turn first
         player1Layout.setOnClickListener {
             if(playerCheck()) {
                 Toast.makeText(this, "${pl1_name.text} start", Toast.LENGTH_SHORT).show()
@@ -61,6 +64,7 @@ class PlayActivity : AppCompatActivity() {
             }
         }
 
+        // only the player turn, display activates
         pl1_minus.setOnClickListener {
             if(isPl1Order && (pl1Score < pl1Goal)) {
                 if (pl1Score > 0) {
@@ -100,6 +104,7 @@ class PlayActivity : AppCompatActivity() {
         }
 
     }
+
     private fun playerCheck(): Boolean {
         if(!isPl1Order && !isPl2Order){
             return true
