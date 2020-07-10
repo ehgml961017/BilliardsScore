@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">BilliardsScore</string>
+    <string name="pl1">player1</string>
+    <string name="pl1_goal">10</string>
+    <string name="pl1_score">0</string>
+    <string name="pl1_rest_time">0</string>
+
+    <string name="pl2">player2</string>
+    <string name="pl2_goal">8</string>
+    <string name="pl2_score">0</string>
+    <string name="pl2_rest_time">0</string>
+
+    <string name="button_start">start</string>
+    <string name="button_new_game">new game</string>
+    <string name="button_plus">+</string>
+    <string name="button_minus">-</string>
+</resources>
