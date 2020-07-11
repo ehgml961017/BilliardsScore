@@ -5,18 +5,15 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_play.*
 import kotlinx.android.synthetic.main.activity_play.pl1_goal
 import kotlinx.android.synthetic.main.activity_play.pl2_goal
+import java.util.*
 
 class PlayActivity : AppCompatActivity() {
-
     var isPl1Order:Boolean = false
     var isPl2Order:Boolean = false
-
-    // timer
-    var pl1Time:Int = 0
-    var pl2Time:Int = 0
 
     var pl1Score = 0
     var pl2Score = 0
@@ -24,6 +21,8 @@ class PlayActivity : AppCompatActivity() {
     var pl1Goal:Int = 0
     var pl2Goal:Int = 0
 
+    var time = 500
+    var timerTask: Timer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_play)
@@ -46,12 +45,7 @@ class PlayActivity : AppCompatActivity() {
             if(playerCheck()) {
                 Toast.makeText(this, "${pl1_name.text} start", Toast.LENGTH_SHORT).show()
                 isPl1Order = true
-                isPl2Order = false
-//                timer(period = 1000){
-//                    pl1Time
-//                }
-
-                player1Layout.setBackgroundColor(Color.YELLOW)
+                start()
             }
         }
 
@@ -59,8 +53,7 @@ class PlayActivity : AppCompatActivity() {
             if(playerCheck()){
                 Toast.makeText(this, "${pl2_name.text} start", Toast.LENGTH_SHORT).show()
                 isPl2Order = true
-                isPl1Order = false
-                player2Layout.setBackgroundColor(Color.YELLOW)
+                start()
             }
         }
 
@@ -106,11 +99,7 @@ class PlayActivity : AppCompatActivity() {
     }
 
     private fun playerCheck(): Boolean {
-        if(!isPl1Order && !isPl2Order){
-            return true
-        } else{
-            return false
-        }
+        return !isPl1Order && !isPl2Order
     }
 
     private fun EndGame(winner:String){
@@ -120,4 +109,46 @@ class PlayActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-}
+    private fun start(){
+        timerTask = kotlin.concurrent.timer(period = 10){
+            time--
+            if(time >= 0) {
+                val min = time / 6000
+                val sec = (time % 6000) / 100
+                val milli = time % 100
+
+                runOnUiThread {
+                    if (isPl1Order) pl1_rest_time.text = "$min:$sec:$milli"
+                    else pl2_rest_time.text = "$min:$sec:$milli"
+                }
+            }
+            if(time < 0){
+                // waiting for sub thread's text printing
+                Thread.sleep(50)
+                reset()
+            }
+        }
+        if(isPl1Order) player1Layout.setBackgroundColor(Color.YELLOW)
+        else player2Layout.setBackgroundColor(Color.YELLOW)
+    }
+
+    private fun reset(){
+        timerTask?.cancel()
+        time = 500
+        if(isPl1Order){
+            player1Layout.setBackgroundColor(ContextCompat.getColor(this,R.color.tranparent))
+        }
+        else{
+            player2Layout.setBackgroundColor(ContextCompat.getColor(this,R.color.tranparent))
+        }
+
+        swapOrder()
+        start()
+    }
+
+    private fun swapOrder(){
+        val tmp = isPl1Order
+        isPl1Order = isPl2Order
+        isPl2Order = tmp
+    }
+ }

@@ -15,6 +15,7 @@
             android:id="@+id/player1Layout"
             android:layout_width="150sp"
             android:layout_height="match_parent"
+            android:background="@android:color/transparent"
             android:orientation="vertical">
 
 
@@ -24,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pl1"
                 android:textAlignment="center"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/pl1_goal"
@@ -32,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pl1_goal"
                 android:textAlignment="center"
-                android:textSize="15dp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/pl1_score"
@@ -40,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pl1_score"
                 android:textAlignment="center"
-                android:textSize="30dp" />
+                android:textSize="30sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -66,7 +67,7 @@
                 android:id="@+id/pl1_rest_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pl1_rest_time"
+                android:text="@string/rest_time"
                 android:textAlignment="center" />
 
         </LinearLayout>
@@ -75,7 +76,8 @@
             android:id="@+id/player2Layout"
             android:layout_width="150sp"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@android:color/transparent">
 
             <TextView
                 android:id="@+id/pl2_name"
@@ -83,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pl2"
                 android:textAlignment="center"
-                android:textSize="20dp" />
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/pl2_goal"
@@ -91,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pl2_goal"
                 android:textAlignment="center"
-                android:textSize="15dp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/pl2_score"
@@ -99,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/pl2_score"
                 android:textAlignment="center"
-                android:textSize="30dp" />
+                android:textSize="30sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -125,7 +127,7 @@
                 android:id="@+id/pl2_rest_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pl2_rest_time"
+                android:text="@string/rest_time"
                 android:textAlignment="center" />
 
         </LinearLayout>
